@@ -1,0 +1,14 @@
+{
+  "patches": [
+    {
+      "pubkey": "REPLACE_WITH_FRESH_PUBKEY",
+      "mode": "replace",
+      "lamports": 2500000000,
+      "owner": "11111111111111111111111111111111",
+      "executable": false,
+      "rent_epoch": 18446744073709551615,
+      "data_base64": ""
+    }
+  ],
+  "allow_epoch_boundary": false
+}

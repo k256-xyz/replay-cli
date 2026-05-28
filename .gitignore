@@ -1,0 +1,9 @@
+/target
+**/*.rs.bk
+Cargo.lock.bak
+.DS_Store
+
+# Local credentials should NEVER be committed. The CLI reads them from
+# REPLAY_API_KEY / REPLAY_ENDPOINT or `~/.config/k256-replay/credentials`.
+/replay.env
+/.envrc

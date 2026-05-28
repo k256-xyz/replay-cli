@@ -1,0 +1,56 @@
+[package]
+name = "k256-replay-cli"
+version = "0.2.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "Operator + agent CLI for k256 Replay — a live, mutable Solana mainnet fork. Drive the fork, splice transactions, capture state-diff fixtures."
+repository = "https://github.com/k256-xyz/replay-cli"
+homepage = "https://k256.xyz/replay"
+readme = "README.md"
+keywords = ["solana", "replay", "cli", "fork", "fixtures"]
+categories = ["command-line-utilities", "development-tools"]
+rust-version = "1.75"
+
+[[bin]]
+name = "k256-replay"
+path = "src/main.rs"
+
+[profile.release]
+# Single static binary; favour size over compile speed.
+lto = "thin"
+codegen-units = 1
+strip = "symbols"
+
+[dependencies]
+clap = { version = "4", features = ["derive", "env", "wrap_help"] }
+clap_complete = "4"
+anyhow = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Blocking REST client. async only buys complexity here — every command is
+# request/response, with `status -w` and `advance --wait` driven by sleep
+# loops. `logs --follow` uses reqwest's blocking response as a `Read` —
+# still no tokio. `plugin upload` uses `blocking-multipart-form`.
+reqwest = { version = "0.12", default-features = false, features = [
+    "blocking",
+    "rustls-tls",
+    "json",
+    "multipart",
+] }
+
+# Renderers
+comfy-table = { version = "7", default-features = false }
+owo-colors = "4"
+humansize = "2"
+
+# Base58 + base64 — base58 for signature/pubkey input validation (so a
+# typo to `replay diff <SIG>` returns "looks malformed" before the
+# round-trip), base64 for `replay deploy --elf <PATH>` and
+# `replay patch --data <PATH>` so operators don't have to pre-encode.
+bs58 = "0.5"
+base64 = "0.22"
+
+# Ctrl-C handling for `logs --follow` so the operator can abort a
+# follow loop cleanly instead of leaking the SSE connection on exit.
+ctrlc = "3"

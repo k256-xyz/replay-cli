@@ -1,0 +1,32 @@
+{
+  "patches": [
+    {
+      "pubkey": "REPLACE_WITH_FRESH_PUBKEY_1",
+      "mode": "replace",
+      "lamports": 3000000000,
+      "owner": "11111111111111111111111111111111",
+      "executable": false,
+      "rent_epoch": 18446744073709551615,
+      "data_base64": ""
+    },
+    {
+      "pubkey": "REPLACE_WITH_FRESH_PUBKEY_2",
+      "mode": "replace",
+      "lamports": 1000000000,
+      "owner": "11111111111111111111111111111111",
+      "executable": false,
+      "rent_epoch": 18446744073709551615,
+      "data_base64": "ZnJvbS1tZW1vLXdpdGgtbG92ZQ=="
+    },
+    {
+      "pubkey": "REPLACE_WITH_FRESH_PUBKEY_3",
+      "mode": "replace",
+      "lamports": 1000000000,
+      "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+      "executable": false,
+      "rent_epoch": 18446744073709551615,
+      "data_base64": ""
+    }
+  ],
+  "allow_epoch_boundary": false
+}
